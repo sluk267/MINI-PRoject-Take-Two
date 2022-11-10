@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void encrypt(FILE *input){
     int c1;
@@ -39,16 +40,22 @@ void decrypt(FILE *input, FILE *output) {
 
     // grabs 2 integer values in a row and prints the corresponding character 
     for(c1 = fgetc(input), c2 = fgetc(input); (c1 != EOF)&&(c2 != EOF); c1 = fgetc(input),c2 = fgetc(input)){
-        printf("%d %d,", ((c1 -'0') * 16), (c2 - '0'));
+        //decryption scheme
         if((c1 == 'T')&&(c2=='T')) {
             fprintf(decryptedOutput, "\t");
+        } else if((c2 >= 65) && (c2 <= 90)) {
+            printf("%c %c,", (c1), (c2));
+            outChar = (((c1 - '0') * 16) + (c2-55)) + 16;
+            if(outChar > 127){
+                outChar = (outChar - 144) + 32;
+            }
+            fprintf(decryptedOutput, "%c", outChar);
         } else {
-            //decryption scheme
             outChar = (((c1 - '0') * 16) + (c2-'0')) + 16;
             if(outChar > 127){
                 outChar = (outChar - 144) + 32;
             }
-            fprintf(decryptedOutput, "%d,", outChar);
+            fprintf(decryptedOutput, "%c", outChar);
         }
         
     }
