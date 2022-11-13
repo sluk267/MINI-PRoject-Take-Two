@@ -44,7 +44,7 @@ void decrypt(FILE *input, FILE *output) {
         if((c1 == 'T')&&(c2=='T')) {
             fprintf(decryptedOutput, "\t");
         } else if((c2 >= 65) && (c2 <= 90)) {
-            printf("%c %c,", (c1), (c2));
+            //printf("%c %c,", (c1), (c2));                            //NOTE IS COMMENTED OUT JUST FOR WHILE I MAKE UI
             outChar = (((c1 - '0') * 16) + (c2-55)) + 16;
             if(outChar > 127){
                 outChar = (outChar - 144) + 32;
@@ -63,8 +63,67 @@ void decrypt(FILE *input, FILE *output) {
     fclose(decryptedOutput);
 
 }
+void Graphics1(){
+printf("\n|-----------------------------------------------------------------------------------------------|");
+printf("\n|                                                                                               |");
+printf("\n|                                    WELCOME TO CRYPTOMAGIC                                     |");
+printf("\n|                                  Created by: Jacob and Paul                                   |");
+printf("\n|                                                                                               |");
+printf("\n| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
+printf("\n|                                                                                               |");
+printf("\n|             Here Are Your Options:                                                            |");
+printf("\n|                      1. -E Will Encrypt Your File                                             |");
+printf("\n|                      2. -D Will Decrypt Your Enrypted File                                    |");
+printf("\n|                      3. Not Choosing Will Encrpt Your File                                    |");
+printf("\n|                                                                                               |");
+printf("\n|             Please Enter In This Format:                                                      |");
+printf("\n|                      <Option> <Filename>                                                      |");
+printf("\n|             OR                <Filename> (Only Do This If You Wish To Encrypt File)           |");
+printf("\n|                                                                                               |");
+printf("\n| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
+printf("\n|                                                                                               |");
+printf("\n|                                                                                               |");
+}
+
+void Graphics2(){
+    printf("|                                                                                               |");
+    printf("\n| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
+    printf("\n|                                                                                               |");
+}
+
+void GraphicE(){
+    printf("\n|                       You Chose To Encrypt Your File                                          |");
+    printf("\n|                         Please Wait A Short While                                             |");
+    printf("\n|                                                                                               |");
+}
+void GraphicD(){
+    printf("\n|                       You Chose To Decrypt Your File                                          |");
+    printf("\n|                         Please Wait A Short While                                             |");
+    printf("\n|                                                                                               |");
+}
+void GraphicERROR(){
+    printf("\n|===============================================================================================|");
+    printf("\n|                                                                                               |");
+    printf("\n|                               ERROR: UNKOWN FUNCTION                                          |");
+    printf("\n|                                                                                               |");
+    printf("\n|                               PLEASE TRY AGAIN LATER                                          |");
+    printf("\n|                                                                                               |");
+    printf("\n|===============================================================================================|");
+
+}
+void GraphicEXITMESSAGE(){
+    printf("\n|===============================================================================================|");
+    printf("\n|                                                                                               |");
+    printf("\n|                                  THANK YOU FOR USING                                          |");
+    printf("\n|                                                                                               |");
+    printf("\n|                                      CRYPTOMAGIC                                              |");
+    printf("\n|                                                                                               |");
+    printf("\n|===============================================================================================|");
+
+}
 
 int main(){
+    Graphics1();
     char fname[100],EOD, Extension;
     int i = 0;
     FILE* Outputtxt;
@@ -74,11 +133,13 @@ int main(){
 
     
    
-    printf("Enter file name: ");
+    printf("\n|                Please Enter What You'd Like to Do: ");
     scanf("-%c ",&EOD);//asks user for Utility Type
     gets(fname);//asks user for filename
-
+    Graphics2();
+    //printf("           |");
 if (EOD == 'E' || EOD == '\0'){
+    GraphicE();
 while ((fname[i] != '.') &&(fname[i] !='\0')){
       i++;
 }
@@ -91,6 +152,7 @@ else{
 }
 
 else if (EOD == 'D'){
+    GraphicD(); //putt decrytion stuff right after this line
 while ((fname[i] != '.') &&(fname[i] !='\0')){
       i++;
 }
@@ -102,11 +164,12 @@ else{
 }
 }
 else{
-    printf("Sorry That Input Was Not Accepted\nPlease Re Run");
+    GraphicERROR();
+    return 0;
 }
      
     Outputtxt = fopen(fname, "w");//Opens the file from where the text will be written.
     FILE *Inputtxt = fopen("data.txt", "r");
     decrypt(Inputtxt, Outputtxt);
-
+GraphicEXITMESSAGE();
 }
