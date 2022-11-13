@@ -65,18 +65,47 @@ void decrypt(FILE *input, FILE *output) {
 }
 
 int main(){
-    char fname[100];
+    char fname[100],EOD, Extension;
+    int i = 0;
     FILE* Outputtxt;
-    memset(fname, 0, 100);//asks user for filename
-    printf("enter file name: ");
-    gets(fname);
+    memset(fname, 0, 100); 
 
 
-    //Opens the file from where the text will be read. 
-    Outputtxt = fopen(fname, "w");
 
     
+   
+    printf("Enter file name: ");
+    scanf("-%c ",&EOD);//asks user for Utility Type
+    gets(fname);//asks user for filename
 
+if (EOD == 'E' || EOD == '\0'){
+while ((fname[i] != '.') &&(fname[i] !='\0')){
+      i++;
+}
+if (fname[i] == '.'){
+   strcpy(fname+i, ".crp");
+}
+else{
+    strcat(fname,".crp");
+}
+}
+
+else if (EOD == 'D'){
+while ((fname[i] != '.') &&(fname[i] !='\0')){
+      i++;
+}
+if (fname[i] == '.'){
+   strcpy(fname+i, ".txt");
+}
+else{
+    strcat(fname,".txt");
+}
+}
+else{
+    printf("Sorry That Input Was Not Accepted\nPlease Re Run");
+}
+     
+    Outputtxt = fopen(fname, "w");//Opens the file from where the text will be written.
     FILE *Inputtxt = fopen("data.txt", "r");
     decrypt(Inputtxt, Outputtxt);
 
