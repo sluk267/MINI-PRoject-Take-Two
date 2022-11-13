@@ -65,21 +65,19 @@ void decrypt(FILE *input, FILE *output) {
 }
 
 int main(){
-//     char choice, filename[100], extension[100];
-//     printf("Would you like to enrypt (-E) or decrypt (-D)\n also what nam: ");
-//     scanf("-%c %c.%c", &choice, &filename, &extension);
-// printf ("\n\n-%c %c.%c\n\n\n", choice, filename, extension);
+    char fname[100];
+    FILE* Outputtxt;
+    memset(fname, 0, 100);//asks user for filename
+    printf("enter file name: ");
+    gets(fname);
 
-//printf("%c\n", filename);
+
+    //Opens the file from where the text will be read. 
+    Outputtxt = fopen(fname, "w");
+
     
 
     FILE *Inputtxt = fopen("data.txt", "r");
-    char name;
-    // printf("What would you like to call your data: ");
-    // scanf("%c", &name);
-    // int rename(const char * oldname, const char * newname);
-    FILE *Outputxt;
-    Outputxt = fopen("output.txt","w");
-    decrypt(Inputtxt, Outputxt);
+    decrypt(Inputtxt, Outputtxt);
 
 }
