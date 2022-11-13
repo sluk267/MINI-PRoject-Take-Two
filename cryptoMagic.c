@@ -77,8 +77,8 @@ printf("\n|                      2. -D Will Decrypt Your Enrypted File          
 printf("\n|                      3. Not Choosing Will Encrpt Your File                                    |");
 printf("\n|                                                                                               |");
 printf("\n|             Please Enter In This Format:                                                      |");
-printf("\n|                      <Option> <Filename>                                                      |");
-printf("\n|             OR                <Filename> (Only Do This If You Wish To Encrypt File)           |");
+printf("\n|                     cryptoMagic <Option> <Filename>                                           |");
+printf("\n|             OR      cryptoMagic <Filename> (Only Do This If You Wish To Encrypt File)         |");
 printf("\n|                                                                                               |");
 printf("\n| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
 printf("\n|                                                                                               |");
@@ -92,21 +92,23 @@ void Graphics2(){
 }
 
 void GraphicE(){
-    printf("\n|                       You Chose To Encrypt Your File                                          |");
-    printf("\n|                         Please Wait A Short While                                             |");
+    printf("\n|                                   You Chose To Encrypt Your File                              |");
+    printf("\n|                                     Please Wait A Short While                                 |");
     printf("\n|                                                                                               |");
 }
 void GraphicD(){
-    printf("\n|                       You Chose To Decrypt Your File                                          |");
-    printf("\n|                         Please Wait A Short While                                             |");
+    printf("\n|                                   You Chose To Decrypt Your File                              |");
+    printf("\n|                                     Please Wait A Short While                                 |");
     printf("\n|                                                                                               |");
 }
 void GraphicERROR(){
     printf("\n|===============================================================================================|");
     printf("\n|                                                                                               |");
-    printf("\n|                               ERROR: UNKOWN FUNCTION                                          |");
+    printf("\n|                                     ERROR: UNKOWN FUNCTION                                    |");
     printf("\n|                                                                                               |");
-    printf("\n|                               PLEASE TRY AGAIN LATER                                          |");
+    printf("\n|                                     PLEASE TRY AGAIN LATER                                    |");
+    printf("\n|                                                                                               |");
+    printf("\n|                             Please Press Enter To Close This Window                           |");
     printf("\n|                                                                                               |");
     printf("\n|===============================================================================================|");
 
@@ -114,9 +116,11 @@ void GraphicERROR(){
 void GraphicEXITMESSAGE(){
     printf("\n|===============================================================================================|");
     printf("\n|                                                                                               |");
-    printf("\n|                                  THANK YOU FOR USING                                          |");
+    printf("\n|                                       THANK YOU FOR USING                                     |");
     printf("\n|                                                                                               |");
-    printf("\n|                                      CRYPTOMAGIC                                              |");
+    printf("\n|                                           CRYPTOMAGIC                                         |");
+    printf("\n|                                                                                               |");
+    printf("\n|                             Please Press Enter To Close This Window                           |");
     printf("\n|                                                                                               |");
     printf("\n|===============================================================================================|");
 
@@ -124,7 +128,7 @@ void GraphicEXITMESSAGE(){
 
 int main(){
     Graphics1();
-    char fname[100],EOD, Extension;
+    char fname[100],EOD, Extension, EXIT;
     int i = 0;
     FILE* Outputtxt;
     memset(fname, 0, 100); 
@@ -134,7 +138,7 @@ int main(){
     
    
     printf("\n|                Please Enter What You'd Like to Do: ");
-    scanf("-%c ",&EOD);//asks user for Utility Type
+    scanf("cryptoMagic -%c ",&EOD);//asks user for Utility Type
     gets(fname);//asks user for filename
     Graphics2();
     //printf("           |");
@@ -165,6 +169,7 @@ else{
 }
 else{
     GraphicERROR();
+    scanf("%c",&EXIT);
     return 0;
 }
      
@@ -172,4 +177,6 @@ else{
     FILE *Inputtxt = fopen("data.txt", "r");
     decrypt(Inputtxt, Outputtxt);
 GraphicEXITMESSAGE();
+scanf("%c",&EXIT);
+return 0;
 }
