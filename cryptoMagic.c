@@ -41,12 +41,17 @@ void decrypt(FILE *input, FILE *output) {
     // grabs 2 integer values in a row and prints the corresponding character 
     for(c1 = fgetc(input), c2 = fgetc(input); (c1 != EOF)&&(c2 != EOF); c1 = fgetc(input),c2 = fgetc(input)){
         //decryption scheme
+        if(c1 == '\n'){
+            fprintf(decryptedOutput, "\n");
+            c1 = c2;
+            c2 = fgetc(input);
+        }
         if((c1 == 'T')&&(c2=='T')) {
             fprintf(decryptedOutput, "\t");
         } else if((c2 >= 65) && (c2 <= 90)) {
-            //printf("%c %c,", (c1), (c2));                            //NOTE IS COMMENTED OUT JUST FOR WHILE I MAKE UI
+            //printf("%c %c,", (c1), (c2));      
             outChar = (((c1 - '0') * 16) + (c2-55)) + 16;
-            if(outChar > 127){
+            if(outChar > 127){  
                 outChar = (outChar - 144) + 32;
             }
             fprintf(decryptedOutput, "%c", outChar);
@@ -140,10 +145,13 @@ int main(){
     printf("\n|                Please Enter What You'd Like to Do: ");
     scanf("cryptoMagic -%c ",&EOD);//asks user for Utility Type
     gets(fname);//asks user for filename
+    FILE *Inputtxt = fopen(fname, "r");
     Graphics2();
     //printf("           |");
 if (EOD == 'E' || EOD == '\0'){
     GraphicE();
+    
+
 while ((fname[i] != '.') &&(fname[i] !='\0')){
       i++;
 }
@@ -174,7 +182,7 @@ else{
 }
      
     Outputtxt = fopen(fname, "w");//Opens the file from where the text will be written.
-    FILE *Inputtxt = fopen("data.txt", "r");
+    
     decrypt(Inputtxt, Outputtxt);
 GraphicEXITMESSAGE();
 scanf("%c",&EXIT);
