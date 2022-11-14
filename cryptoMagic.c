@@ -11,7 +11,7 @@ void encrypt(FILE *input, FILE *output){
     //cycles through characters in file one at a time
     for(c1 = fgetc(input); c1 != EOF; c1 = fgetc(input)){
         //prints all characters to console for convenience 
-        printf("%c", c1);
+        //printf("%c", c1);
         if(c1 == 10) {
             //check for linux carriage return
             fprintf(output, "\n");
