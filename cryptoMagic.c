@@ -139,8 +139,8 @@ int main(){
 
     
    
-    printf("\n|                Please Enter What You'd Like to Do: ");
-    scanf("cryptoMagic -%c ",&EOD);//asks user for Utility Type
+    printf("\n|                Please Enter What You'd Like to Do: cryptoMagic ");
+    scanf("-%c ",&EOD);//asks user for Utility Type
     gets(fname);//asks user for filename
 
     Graphics2(); //UI
