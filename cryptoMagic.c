@@ -144,6 +144,8 @@ int main(){
     //printf("           |");
 if (EOD == 'E' || EOD == '\0'){
     GraphicE();
+
+
 while ((fname[i] != '.') &&(fname[i] !='\0')){
       i++;
 }
